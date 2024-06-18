@@ -30,11 +30,12 @@ public class Order {
     public static Order creatOrder(Member member, OrderItem... orderItems) {
         Order order = new Order();
         order.setMember(member);
-        order.setTotalPrice(0);
+        int totalPrice = 0;
         for (OrderItem orderItem : orderItems) {
             order.addOrderItem(orderItem);
-            order.setTotalPrice(order.getTotalPrice() + orderItem.calculateOrderItemPrice());
+            totalPrice += orderItem.getPrice();
         }
+        order.setTotalPrice(totalPrice);
         return order;
     }
 
